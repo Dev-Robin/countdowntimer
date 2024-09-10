@@ -4,7 +4,7 @@
     const time : Ref<String> = ref("hi");
 
     const countDownTime : number = new Date("10 september 2024 17:00:00").getTime();
-    setInterval(() => {
+    const timer = setInterval(() => {
         const dateNow : number = new Date().getTime();
         
         let distance = countDownTime - dateNow;
@@ -15,6 +15,11 @@
         let seconds = Math.floor((distance % (1000 * 60)) / 1000);
         
         time.value = `${days}d:${hours}h:${minutes}m:${seconds}s`;
+
+        if (distance === 0) {
+            time.value = "The factory must grow";
+            clearInterval(timer);
+        }
     }, 1000); 
 </script>
 <template>
